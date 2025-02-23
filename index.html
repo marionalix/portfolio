@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="/style.css">
 </head>
 <body>
+	
 	<!-- Barre de menu supérieure -->
 	<div id="menu-bar">
 		<div class="menu-left">
@@ -16,8 +17,10 @@
 			<span id="clock"></span>
 		</div>
 	</div>
+	
 	<!-- Zone principale du bureau -->
 	<div id="desktop">
+		
 		<!-- Fenêtre Mail (formulaire de contact) -->
 		<div id="mail-window" class="window hidden">
 			<div class="window-header">
@@ -48,16 +51,34 @@
 				</form>
 			</div>
 		</div>
+		
+		<!-- Fenêtre Safari simulée -->
+		<div id="safari-window" class="window hidden">
+			<div class="window-header">
+				<div class="window-controls">
+					<button class="close" id="close-safari"></button>
+					<button class="minimize" id="minimize-safari"></button>
+					<button class="maximize" id="maximize-safari"></button>
+				</div>
+				<div class="safari-address-bar">
+					<input type="text" id="safari-url" value="https://www.apple.com/fr/embed/" readonly />
+				</div>
+			</div>
+			<div class="window-content">
+				<iframe id="safari-iframe" src="https://www.apple.com/fr/" frameborder="0"></iframe>
+			</div>
+		</div>
+		
 		<!-- Dock -->
 		<div id="dock">
-			<div class="dock-icon" data-app="mail">
+			<div id="mail-icon" class="dock-icon" data-app="mail">
 				<img src="img/mail.png" alt="Mail">
 				<span>Mail</span>
 				<div class="indicator"></div>
 			</div>
-			<div class="dock-icon" data-app="contact">
-				<img src="img/contact.png" alt="Contact">
-				<span>Contact</span>
+			<div id="safari-icon" class="dock-icon" data-app="safari">
+				<img src="img/safari.png" alt="Safari">
+				<span>Safari</span>
 				<div class="indicator"></div>
 			</div>
 			<div class="dock-icon" data-app="about">

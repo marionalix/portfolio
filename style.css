@@ -100,25 +100,37 @@ body, html {
 	opacity: 1;
 }
 
+/* .dock-icon.focused .indicator {
+	background-color: rgb(0, 255, 0);
+} */
+
 /* Fenêtre de style macOS */
 .window {
 	position: absolute;
-	top: 50%;
+	top:44%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	width: 400px;
+	width: 70%;
+	height: calc(100vh - 200px);
 	background: rgba(255, 255, 255, 0.9);
 	border-radius: 10px;
 	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 	overflow: hidden;
 	display: block;
+	transition: box-shadow 0.2s ease-in-out;
+	/* opacity: 90%; */
+}
+
+.window.active {
 	z-index: 100;
+	/* opacity: 1; */
 }
 
 .window-header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	height: 42px;
 	padding: 8px 12px;
 	background: rgba(230, 230, 230, 0.9);
 	font-weight: bold;
@@ -171,7 +183,7 @@ body, html {
 	background-color: #007aff;
 	border: none;
 	color: white;
-	padding: 5px 15px;
+	padding: 6px 15px;
 	border-radius: 5px;
 	font-weight: bold;
 	cursor: pointer;
@@ -224,9 +236,6 @@ body, html {
 }
 
 /* Maximiser la fenêtre Mail */
-
-
-/* Maximiser la fenêtre Mail */
 .window.maximized {
 	width: 100%;
 	height: calc(100vh - 30px); /* Laisse la place à la barre de menu */
@@ -236,11 +245,65 @@ body, html {
 	border-radius: 0;
 }
 
-.window-content.maximized {
-	height: calc(100vh - 70px);
+.window-content {
+	height: calc(100% - 46px);
 }
 
 /* Minimiser la fenêtre Mail (cachée) */
 .window.minimized {
 	display: none;
+}
+
+/* Animation de rebond pour l'icône du dock */
+@keyframes bounce {
+	0% { transform: translateY(0); }
+	30% { transform: translateY(-20px); }
+	50% { transform: translateY(0); }
+	70% { transform: translateY(-10px); }
+	100% { transform: translateY(0); }
+}
+
+.dock-icon.bouncing img {
+	animation: bounce 0.8s ease;
+}
+
+/* Fenêtre Safari */
+.safari-window {
+	width: 80%;
+	height: 80%;
+	background-color: #f5f5f7;
+	border-radius: 12px;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	top: 10%;
+	left: 10%;
+	overflow: hidden;
+}
+
+/* Barre d’adresse Safari */
+.safari-address-bar {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.safari-address-bar input {
+	width: 90%;
+	padding: 6px 12px;
+	border-radius: 8px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	text-align: center;
+	font-size: 14px;
+	pointer-events: none;
+}
+
+/* Iframe pour le contenu web */
+.window-content iframe {
+	width: 100%;
+	height: 100%;
+	border: none;
 }
