@@ -44,7 +44,7 @@ body, html {
 	transform: translateX(-50%);
 	display: flex;
 	gap: 10px;
-	padding: 10px 10px;
+	padding: 10px 10px 3px 10px;
 	background: rgba(255, 255, 255, 0.2);
 	backdrop-filter: blur(10px);
 	border-radius: 20px;
@@ -83,4 +83,123 @@ body, html {
 
 .dock-icon:hover span {
 	display: block;
+}
+
+/* Indicateur de focus sous l'icône */
+.indicator {
+	width: 4px;
+	height: 4px;
+	border-radius: 50%;
+	background-color: white;
+	margin-top: 2px;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+}
+
+.dock-icon.active .indicator {
+	opacity: 1;
+}
+
+/* Fenêtre de style macOS */
+.window {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 400px;
+	background: rgba(255, 255, 255, 0.9);
+	border-radius: 10px;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+	overflow: hidden;
+	display: none;
+	z-index: 100;
+}
+
+.window-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px;
+	background: rgba(0, 0, 0, 0.1);
+	font-weight: bold;
+}
+
+.window-content {
+	padding: 20px;
+/* Fenêtre de style macOS */
+.window {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 400px;
+	background: rgba(255, 255, 255, 0.9);
+	border-radius: 10px;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+	overflow: hidden;
+	display: none;
+	z-index: 100;
+}
+
+.window-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px;
+	background: rgba(0, 0, 0, 0.1);
+	font-weight: bold;
+}
+
+.window-content {
+	padding: 20px;
+/* Fenêtre de style macOS */
+.window {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 400px;
+	background: rgba(255, 255, 255, 0.9);
+	border-radius: 10px;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+	overflow: hidden;
+	display: none;
+	z-index: 100;
+}
+
+.window-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px;
+	background: rgba(0, 0, 0, 0.1);
+	font-weight: bold;
+}
+
+.window-content {
+	padding: 20px;
+}
+
+.window-content form input,
+.window-content form textarea {
+	width: 100%;
+	margin-bottom: 10px;
+	padding: 10px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+}
+
+.window-content form button {
+	width: 100%;
+	padding: 10px;
+	border-radius: 5px;
+	border: none;
+	background-color: #007aff;
+	color: white;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.hidden {
+	display: none;
 }

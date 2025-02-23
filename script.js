@@ -1,15 +1,33 @@
-// Interaction basique : log de l'app cliquée
 document.addEventListener('DOMContentLoaded', () => {
 	const dockIcons = document.querySelectorAll('.dock-icon');
+	const mailWindow = document.getElementById('mail-window');
+	const closeMailBtn = document.getElementById('close-mail');
 
 	dockIcons.forEach(icon => {
 		icon.addEventListener('click', () => {
+			dockIcons.forEach(i => i.classList.remove('active'));
+			icon.classList.add('active');
 			const app = icon.dataset.app;
-			console.log(`Ouverture de l'application : ${app}`);
-			// Ici on ajoutera l'ouverture des fenêtres plus tard
+
+			if (app === 'mail') {
+				mailWindow.classList.remove('hidden');
+			}
 		});
 	});
+
+	closeMailBtn.addEventListener('click', () => {
+		mailWindow.classList.add('hidden');
+		document.querySelector(".dock-icon[data-app='mail']").classList.remove('active');
+	});
+
+	document.getElementById('contact-form').addEventListener('submit', (e) => {
+		e.preventDefault();
+		alert('Message envoyé avec succès !');
+		mailWindow.classList.add('hidden');
+		document.querySelector(".dock-icon[data-app='mail']").classList.remove('active');
+	});
 });
+
 
 // Mise à jour de l'horloge en haut à droite
 function updateClock() {
