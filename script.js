@@ -16,7 +16,10 @@ updateClock();
 document.addEventListener('DOMContentLoaded', () => {
 	const dockIcons = document.querySelectorAll('.dock-icon');
 	const mailWindow = document.getElementById('mail-window');
+	const mailContent = document.getElementById('mail-content');
 	const closeMailBtn = document.getElementById('close-mail');
+	const maximizeMailBtn = document.getElementById('maximize-mail');
+	const minimizeMailBtn = document.getElementById('minimize-mail');
 	const sendMailBtn = document.getElementById('send-mail');
 	const menuTitle = document.getElementById('menu-title');
 	const contactForm = document.getElementById('contact-form');
@@ -25,19 +28,28 @@ document.addEventListener('DOMContentLoaded', () => {
 		icon.addEventListener('click', () => {
 			const app = icon.dataset.app;
 			if (app === 'mail') {
-				mailWindow.classList.toggle('visible');
 				mailWindow.classList.remove('hidden');
 				menuTitle.textContent = 'Mail';
 				updateDockFocus(icon, mailWindow);
 			}
 		});
 	});
-
+	
 	closeMailBtn.addEventListener('click', () => {
 		mailWindow.classList.remove('visible');
 		mailWindow.classList.add('hidden');
 		menuTitle.textContent = 'Portfolio';
 		removeDockFocus('mail');
+	});
+	
+	maximizeMailBtn.addEventListener('click', () => {
+		mailWindow.classList.add('maximize');
+		mailContent.classList.add('maximize');
+	});
+	
+	minimizeMailBtn.addEventListener('click', () => {
+		mailWindow.classList.remove('maximize');
+		mailContent.classList.remove('maximize');
 	});
 
 	sendMailBtn.addEventListener('click', () => {

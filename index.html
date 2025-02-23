@@ -23,24 +23,28 @@
 			<div class="window-header">
 				<div class="window-controls">
 					<button class="close" id="close-mail"></button>
-					<button class="minimize"></button>
-					<button class="maximize"></button>
+					<button class="minimize" id="minimize-mail"></button>
+					<button class="maximize" id="maximize-mail"></button>
 				</div>
 				<button id="send-mail" class="send-button">Envoyer</button>
 			</div>
-			<div class="window-content">
+			<div id="mail-content" class="window-content">
 				<form id="contact-form">
-					<label for="to">À :</label>
-					<input type="email" id="to" name="to" value="marionalix@icloud.com" readonly>
-		
-					<label for="from">De :</label>
-					<input type="email" id="from" name="from" placeholder="Votre adresse email" required>
-		
-					<label for="subject">Objet :</label>
-					<input type="text" id="subject" name="subject" placeholder="Sujet..." required>
-		
-					<label for="message">Message :</label>
-					<textarea id="message" name="message" placeholder="Écrivez votre message ici..." required></textarea>
+					<div class="form-row">
+						<span>À :</span>
+						<input type="email" id="to" name="to" value="marionalix@icloud.com" readonly>
+					</div>
+					<div class="form-row">
+						<span>De :</span>
+						<input type="email" id="from" name="from" placeholder="Votre adresse e-mail" required>
+					</div>
+					<div class="form-row">
+						<span>Objet :</span>
+						<input type="text" id="subject" name="subject" placeholder="Sujet..." required>
+					</div>
+					<div class="form-row message-row">
+						<textarea id="message" name="message" placeholder="Écrivez votre message ici..." required></textarea>
+					</div>
 				</form>
 			</div>
 		</div>
