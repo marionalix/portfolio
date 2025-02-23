@@ -43,7 +43,8 @@ body, html {
 	left: 50%;
 	transform: translateX(-50%);
 	display: flex;
-	padding: 10px 20px;
+	gap: 10px;
+	padding: 10px 10px;
 	background: rgba(255, 255, 255, 0.2);
 	backdrop-filter: blur(10px);
 	border-radius: 20px;
@@ -51,10 +52,11 @@ body, html {
 }
 
 .dock-icon {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin: 0 10px;
+	margin: 0;
 	cursor: pointer;
 	transition: transform 0.2s;
 }
@@ -69,8 +71,16 @@ body, html {
 }
 
 .dock-icon span {
-	margin-top: 5px;
-	font-size: 0.8rem;
+	display: none;
+	position: absolute;
+	bottom: 80px;
+	background: rgba(0, 0, 0, 0.7);
 	color: white;
-	text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+	padding: 4px 12px;
+	border-radius: 5px;
+	font-size: 0.75rem;
+}
+
+.dock-icon:hover span {
+	display: block;
 }

@@ -15,8 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
 function updateClock() {
 	const clockElement = document.getElementById('clock');
 	const now = new Date();
-	const options = { weekday: 'short', day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' };
-	clockElement.textContent = now.toLocaleString('fr-FR', options);
+	const optionsDate = { weekday: 'short', day: '2-digit', month: 'short' };
+	const optionsTime = { hour: '2-digit', minute: '2-digit' };
+	
+	const date = now.toLocaleDateString('fr-FR', optionsDate);
+	const time = now.toLocaleTimeString('fr-FR', optionsTime);
+	
+	clockElement.textContent = `${date} ${time}`; // Suppression du "à"
 }
 
 // Actualise toutes les minutes
