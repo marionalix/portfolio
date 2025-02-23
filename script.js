@@ -24,58 +24,58 @@ document.addEventListener('DOMContentLoaded', () => {
 	const menuTitle = document.getElementById('menu-title');
 	const contactForm = document.getElementById('contact-form');
 
+	// Gestion de l'ouverture depuis le dock
 	dockIcons.forEach(icon => {
 		icon.addEventListener('click', () => {
 			const app = icon.dataset.app;
 			if (app === 'mail') {
-				mailWindow.classList.remove('hidden');
+				mailWindow.classList.remove('hidden', 'minimized');
 				menuTitle.textContent = 'Mail';
 				updateDockFocus(icon, mailWindow);
 			}
 		});
 	});
-	
+
+	// Fermeture de la fenêtre Mail
 	closeMailBtn.addEventListener('click', () => {
-		mailWindow.classList.remove('visible');
+		const form = document.getElementById('contact-form');
+		form.reset(); // Vide tous les champs du formulaire
 		mailWindow.classList.add('hidden');
+		mailWindow.classList.remove('maximized', 'minimized');
 		menuTitle.textContent = 'Portfolio';
 		removeDockFocus('mail');
 	});
-	
+
+	// Maximiser ou restaurer la taille de la fenêtre Mail
 	maximizeMailBtn.addEventListener('click', () => {
-		mailWindow.classList.add('maximize');
-		mailContent.classList.add('maximize');
-	});
-	
-	minimizeMailBtn.addEventListener('click', () => {
-		mailWindow.classList.remove('maximize');
-		mailContent.classList.remove('maximize');
+		mailWindow.classList.toggle('maximized');
+		mailContent.classList.toggle('maximized');
 	});
 
+	// Minimiser la fenêtre Mail
+	minimizeMailBtn.addEventListener('click', () => {
+		mailWindow.classList.add('minimized');
+	});
+
+	// Gestion du bouton Envoyer
 	sendMailBtn.addEventListener('click', () => {
 		if (contactForm.checkValidity()) {
-			alert('Message envoyé avec succès !');
-			mailWindow.classList.remove('visible');
-			mailWindow.classList.add('hidden');
-			menuTitle.textContent = 'Portfolio';
-			removeDockFocus('mail');
+			alert("Votre message a été envoyé avec succès !");
 			contactForm.reset();
 		} else {
-			alert('Veuillez remplir tous les champs obligatoires.');
+			alert("Veuillez remplir tous les champs requis.");
 		}
 	});
 
-	function updateDockFocus(icon, windowElement) {
-		const allIndicators = document.querySelectorAll('.dock-icon .indicator');
-		allIndicators.forEach(i => i.classList.remove('active'));
-
-		if (!windowElement.classList.contains('hidden')) {
-			icon.querySelector('.indicator').classList.add('active');
-		}
+	// Mise à jour des indicateurs dans le dock
+	function updateDockFocus(activeIcon, activeWindow) {
+		dockIcons.forEach(icon => icon.classList.remove('active'));
+		activeIcon.classList.add('active');
+		activeWindow.style.zIndex = 101;
 	}
 
 	function removeDockFocus(appName) {
-		const icon = document.querySelector(`.dock-icon[data-app='${appName}'] .indicator`);
-		if (icon) icon.classList.remove('active');
+		const appIcon = document.querySelector(`.dock-icon[data-app="${appName}"]`);
+		if (appIcon) appIcon.classList.remove('active');
 	}
 });

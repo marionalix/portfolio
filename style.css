@@ -219,15 +219,28 @@ body, html {
 	flex: 1;
 }
 
-.hidden {
+.window.hidden {
 	display: none;
 }
 
-.maximize#mail-window {
+/* Maximiser la fenêtre Mail */
+
+
+/* Maximiser la fenêtre Mail */
+.window.maximized {
 	width: 100%;
-	height: 100%;
+	height: calc(100vh - 30px); /* Laisse la place à la barre de menu */
+	top: 30px;
+	left: 0;
+	transform: none;
+	border-radius: 0;
 }
 
-.maximize#mail-content {
-	height: calc(100vh - 40px);
+.window-content.maximized {
+	height: calc(100vh - 70px);
+}
+
+/* Minimiser la fenêtre Mail (cachée) */
+.window.minimized {
+	display: none;
 }
