@@ -111,59 +111,10 @@ body, html {
 	border-radius: 10px;
 	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 	overflow: hidden;
-	display: none;
-	z-index: 100;
-}
-
-.window-header {
 	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 10px;
-	background: rgba(0, 0, 0, 0.1);
-	font-weight: bold;
-}
-
-.window-content {
-	padding: 20px;
-/* Fenêtre de style macOS */
-.window {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: 400px;
-	background: rgba(255, 255, 255, 0.9);
-	border-radius: 10px;
-	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-	overflow: hidden;
-	display: none;
-	z-index: 100;
-}
-
-.window-header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 10px;
-	background: rgba(0, 0, 0, 0.1);
-	font-weight: bold;
-}
-
-.window-content {
-	padding: 20px;
-/* Fenêtre de style macOS */
-.window {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: 400px;
-	background: rgba(255, 255, 255, 0.9);
-	border-radius: 10px;
-	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-	overflow: hidden;
-	display: none;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: stretch;
 	z-index: 100;
 }
 
