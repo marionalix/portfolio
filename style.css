@@ -1,309 +1,309 @@
-/* Style de base pour simuler le bureau macOS */
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body, html {
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
-	font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-/* Barre de menu supérieure */
 #menu-bar {
-	position: fixed;
-	top: 0;
-	width: 100%;
-	height: 30px;
-	background: rgba(255, 255, 255, 0.2);
-	backdrop-filter: blur(10px);
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 0 15px;
-	color: white;
-	font-size: 0.9rem;
-	z-index: 100;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+  color: white;
+  font-size: 0.9rem;
+  z-index: 100;
 }
 
 #desktop {
-	width: 100%;
-	height: 100%; 
-	background: url('../img/wallpaper.jpg') no-repeat center center/cover;
-	position: relative;
-	padding-top: 30px; /* Laisse de la place pour la barre du haut */
+  width: 100%;
+  height: 100%;
+  background: url('../img/wallpaper.jpg') no-repeat center center/cover;
+  position: relative;
+  padding-top: 30px;
 }
 
 #dock {
-	position: fixed;
-	bottom: 10px;
-	left: 50%;
-	transform: translateX(-50%);
-	display: flex;
-	gap: 10px;
-	padding: 10px 10px 3px 10px;
-	background: rgba(255, 255, 255, 0.2);
-	backdrop-filter: blur(10px);
-	border-radius: 20px;
-	z-index: 99;
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  padding: 10px 10px 3px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  z-index: 99;
 }
 
 .dock-icon {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin: 0;
-	cursor: pointer;
-	transition: transform 0.2s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  cursor: pointer;
+  transition: transform 0.2s;
 }
 
 .dock-icon img {
-	width: 64px;
-	transition: transform 0.2s;
+  width: 64px;
+  transition: transform 0.2s;
 }
 
 .dock-icon:hover img {
-	transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 .dock-icon span {
-	display: none;
-	position: absolute;
-	bottom: 80px;
-	background: rgba(0, 0, 0, 0.7);
-	color: white;
-	padding: 4px 12px;
-	border-radius: 5px;
-	font-size: 0.75rem;
+  display: none;
+  position: absolute;
+  bottom: 80px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 5px;
+  font-size: 0.75rem;
 }
 
 .dock-icon:hover span {
-	display: block;
+  display: block;
 }
 
-/* Indicateur de focus sous l'icône */
 .indicator {
-	width: 4px;
-	height: 4px;
-	border-radius: 50%;
-	background-color: white;
-	margin-top: 2px;
-	opacity: 0;
-	transition: opacity 0.3s ease;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: white;
+  margin-top: 2px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .dock-icon.active .indicator {
-	opacity: 1;
+  opacity: 1;
 }
 
-/* .dock-icon.focused .indicator {
-	background-color: rgb(0, 255, 0);
-} */
-
-/* Fenêtre de style macOS */
 .window {
-	position: absolute;
-	top:44%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: 70%;
-	height: calc(100vh - 200px);
-	background: rgba(255, 255, 255, 0.9);
-	border-radius: 10px;
-	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-	overflow: hidden;
-	display: block;
-	transition: box-shadow 0.2s ease-in-out;
-	/* opacity: 90%; */
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  height: calc(100vh - 200px);
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: block;
+  transition: box-shadow 0.2s ease-in-out;
+  resize: both;
+  min-width: 240px;
+  min-height: 240px;
 }
 
 .window.active {
-	z-index: 100;
-	/* opacity: 1; */
+  z-index: 100;
 }
 
 .window-header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	height: 42px;
-	padding: 8px 12px;
-	background: rgba(230, 230, 230, 0.9);
-	font-weight: bold;
-	border-bottom: 1px solid #d0d0d0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 42px;
+  padding: 8px 12px;
+  background: rgba(230, 230, 230, 0.9);
+  font-weight: bold;
+  border-bottom: 1px solid #d0d0d0;
 }
 
 .window-content {
-	padding: 10px 20px 20px 20px;
-	background-color: white;
-	display: flex;
-	flex-direction: column;
+  padding: 10px 20px 20px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 41px);
 }
 
-.window-content form input,
-.window-content form textarea {
-	width: 100%;
-	padding: 10px;
-	border-style: none;
+.window-content form textarea,
+.window-content form input {
+  width: 100%;
+  padding-top: 10px;
+  border-style: none;
+}
+
+.window-content form input {
+  padding: 10px;
 }
 
 .window-content form button {
-	width: 100%;
-	padding: 10px;
-	border-radius: 5px;
-	border: none;
-	background-color: #007aff;
-	color: white;
-	font-weight: bold;
-	cursor: pointer;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #007aff;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .window-controls {
-	display: flex;
-	gap: 8px;
+  display: flex;
+  gap: 8px;
 }
 
 .window-controls button {
-	width: 12px;
-	height: 12px;
-	border-radius: 50%;
-	border: none;
-	cursor: pointer;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
 }
 
-.window-controls .close { background-color: #ff5f57; }
-.window-controls .minimize { background-color: #ffbd2e; }
-.window-controls .maximize { background-color: #28c840; }
+.window-controls .close {
+  background-color: #ff5f57;
+}
+
+.window-controls .minimize {
+  background-color: #ffbd2e;
+}
+
+.window-controls .maximize {
+  background-color: #28c840;
+}
 
 .send-button {
-	background-color: #007aff;
-	border: none;
-	color: white;
-	padding: 6px 15px;
-	border-radius: 5px;
-	font-weight: bold;
-	cursor: pointer;
+  background-color: #007aff;
+  border: none;
+  color: white;
+  padding: 6px 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-/* Alignement horizontal label/input comme Mail macOS */
 .form-row {
-	display: flex;
-	align-items: center;
-	margin-bottom: 2px;
-	border-bottom: 1px solid #e5e2e2;
+  display: flex;
+  align-items: center;
+  margin-bottom: 2px;
+  border-bottom: 1px solid #e5e2e2;
 }
 
 .form-row span {
-	width: auto; /* Largeur identique pour l'alignement */
-	text-align: left;
-	margin-right: 10px;
-	font-size: 14px; 
-	color: #7f7f7f;
+  width: auto;
+  text-align: left;
+  margin-right: 10px;
+  font-size: 14px;
+  color: #7f7f7f;
 }
 
 .form-row input {
-	flex: 1;
-	padding: 8px;
-	font-size: 14px; 
+  flex: 1;
+  padding: 8px;
+  font-size: 14px;
 }
 
 .message-row {
-	flex: 1;
-	display: flex;
-	margin-bottom: 0;
-	border-style: none;
+  flex: 1;
+  display: flex;
+  margin-bottom: 0;
+  border-style: none;
 }
 
 .message-row textarea {
-	flex: 1;
-	height: 100%;
-	resize: none;
-	font-size: 14px; 
+  flex: 1;
+  height: 100%;
+  resize: none;
+  font-size: 14px;
 }
 
 #contact-form {
-	display: flex;
-	flex-direction: column;
-	flex: 1;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .window.hidden {
-	display: none;
+  display: none;
 }
 
-/* Maximiser la fenêtre Mail */
 .window.maximized {
-	width: 100%;
-	height: calc(100vh - 30px); /* Laisse la place à la barre de menu */
-	top: 30px;
-	left: 0;
-	transform: none;
-	border-radius: 0;
+  width: 100% !important;
+  height: calc(100vh - 30px) !important;
+  top: 30px !important;
+  left: 0 !important;
+  transform: none;
+  border-radius: 0;
+  resize: none;
 }
 
-.window-content {
-	height: calc(100% - 46px);
-}
-
-/* Minimiser la fenêtre Mail (cachée) */
 .window.minimized {
-	display: none;
+  display: none;
 }
 
-/* Animation de rebond pour l'icône du dock */
 @keyframes bounce {
-	0% { transform: translateY(0); }
-	30% { transform: translateY(-20px); }
-	50% { transform: translateY(0); }
-	70% { transform: translateY(-10px); }
-	100% { transform: translateY(0); }
+  0%, 50%, 100% {
+	transform: translateY(0);
+  }
+  30% {
+	transform: translateY(-20px);
+  }
+  70% {
+	transform: translateY(-10px);
+  }
 }
 
 .dock-icon.bouncing img {
-	animation: bounce 0.8s ease;
+  animation: bounce 0.8s ease;
 }
 
-/* Fenêtre Safari */
 .safari-window {
-	width: 80%;
-	height: 80%;
-	background-color: #f5f5f7;
-	border-radius: 12px;
-	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-	display: flex;
-	flex-direction: column;
-	position: absolute;
-	top: 10%;
-	left: 10%;
-	overflow: hidden;
+  width: 80%;
+  height: 80%;
+  background-color: #f5f5f7;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  overflow: hidden;
 }
 
-/* Barre d’adresse Safari */
 .safari-address-bar {
-	flex: 1;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .safari-address-bar input {
-	width: 90%;
-	padding: 6px 12px;
-	border-radius: 8px;
-	border: 1px solid #ccc;
-	background-color: #fff;
-	text-align: center;
-	font-size: 14px;
-	pointer-events: none;
+  width: 90%;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  text-align: center;
+  font-size: 14px;
+  pointer-events: none;
 }
 
-/* Iframe pour le contenu web */
 .window-content iframe {
-	width: 100%;
-	height: 100%;
-	border: none;
+  width: 100%;
+  height: 100%;
+  border: none;
 }

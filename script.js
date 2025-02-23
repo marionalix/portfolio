@@ -1,122 +1,123 @@
 document.addEventListener('DOMContentLoaded', () => {
+	// === CONST & SÉLECTEURS ===
 	const dockIcons = document.querySelectorAll('.dock-icon');
 	const windows = document.querySelectorAll('.window');
 	const mailWindow = document.getElementById('mail-window');
 	const safariWindow = document.getElementById('safari-window');
-	
 	const closeMailBtn = document.getElementById('close-mail');
 	const maximizeMailBtn = document.getElementById('maximize-mail');
 	const minimizeMailBtn = document.getElementById('minimize-mail');
 	const closeSafariBtn = document.getElementById('close-safari');
 	const maximizeSafariBtn = document.getElementById('maximize-safari');
 	const minimizeSafariBtn = document.getElementById('minimize-safari');
-	
 	const sendMailBtn = document.getElementById('send-mail');
 	const menuTitle = document.getElementById('menu-title');
 	const contactForm = document.getElementById('contact-form');
 
-	// Gestion de l'ouverture depuis le dock
+	makeDraggable(mailWindow);
+	makeDraggable(safariWindow);
+
+	// === GESTION DU DOCK ===
 	dockIcons.forEach(icon => {
 		icon.addEventListener('click', () => {
 			const app = icon.dataset.app;
-			if (app === 'mail') {
-				mailWindow.classList.remove('hidden', 'minimized');
-				menuTitle.textContent = 'Mail';
-				updateDockFocus(icon, mailWindow);
-			}
-			else if (app === 'safari') {
-				safariWindow.classList.remove('hidden', 'minimized');
-				menuTitle.textContent = 'Safari';
-				updateDockFocus(icon, safariWindow);
-			}
+			if (app === 'mail') openWindow(mailWindow, 'Mail', icon);
+			else if (app === 'safari') openWindow(safariWindow, 'Safari', icon);
 		});
 	});
 
-	// Fermeture de la fenêtre Mail
-	closeMailBtn.addEventListener('click', () => {
-		const form = document.getElementById('contact-form');
-		form.reset(); // Vide tous les champs du formulaire
-		mailWindow.classList.add('hidden');
-		mailWindow.classList.remove('maximized', 'minimized');
-		menuTitle.textContent = 'Portfolio';
-		removeDockFocus('mail');
-	});
-	
-	// Fermeture de la fenêtre Safari
-	closeSafariBtn.addEventListener('click', () => {
-		safariWindow.classList.add('hidden');
-		safariWindow.classList.remove('maximized', 'minimized');
-		menuTitle.textContent = 'Portfolio';
-		removeDockFocus('safari');
-	});
-	
-	// Maximiser ou restaurer la taille de la fenêtre Mail
-	maximizeMailBtn.addEventListener('click', () => {
-		mailWindow.classList.toggle('maximized');
-	});
-	
-	// Maximiser ou restaurer la taille de la fenêtre Safari
-	maximizeSafariBtn.addEventListener('click', () => {
-		safariWindow.classList.toggle('maximized');
-	});
+	// === GESTION FENÊTRES (FERMER | MAXIMISER | MINIMISER) ===
+	closeMailBtn.addEventListener('click', () => closeWindow(mailWindow, 'mail', true));
+	closeSafariBtn.addEventListener('click', () => closeWindow(safariWindow, 'safari'));
 
-	// Minimiser la fenêtre Mail
-	minimizeMailBtn.addEventListener('click', () => {
-		mailWindow.classList.add('minimized');
-	});
-	
-	// Minimiser la fenêtre Safari
-	minimizeSafariBtn.addEventListener('click', () => {
-		safariWindow.classList.add('minimized');
-	});
+	maximizeMailBtn.addEventListener('click', () => toggleMaximize(mailWindow));
+	maximizeSafariBtn.addEventListener('click', () => toggleMaximize(safariWindow));
 
-	// Gestion du bouton Envoyer
+	minimizeMailBtn.addEventListener('click', () => minimizeWindow(mailWindow));
+	minimizeSafariBtn.addEventListener('click', () => minimizeWindow(safariWindow));
+
+	// === GESTION FORMULAIRE MAIL ===
 	sendMailBtn.addEventListener('click', () => {
 		if (contactForm.checkValidity()) {
-			alert("Votre message a été envoyé avec succès !");
+			alert("✅ Votre message a été envoyé avec succès !");
 			contactForm.reset();
 		} else {
-			alert("Veuillez remplir tous les champs requis.");
+			alert("⚠️ Veuillez remplir tous les champs requis.");
 		}
 	});
-	
-	// Mise à jour des indicateurs dans le dock
+
+	// === HORLOGE ===
+	function updateClock() {
+		const clockElement = document.getElementById('clock');
+		const now = new Date();
+		const date = now.toLocaleDateString('fr-FR', { weekday: 'short', day: '2-digit', month: 'short' });
+		const time = now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+		clockElement.textContent = `${date} ${time}`;
+	}
+	setInterval(updateClock, 1000);
+	updateClock();
+
+	// === FONCTIONS UTILITAIRES ===
+	function openWindow(windowEl, title, icon) {
+		windowEl.classList.remove('hidden', 'minimized');
+		menuTitle.textContent = title;
+		updateDockFocus(icon, windowEl);
+	}
+
+	function closeWindow(windowEl, appName, resetForm = false) {
+		if (resetForm) contactForm.reset();
+		windowEl.classList.add('hidden');
+		windowEl.classList.remove('maximized', 'minimized');
+		menuTitle.textContent = 'Portfolio';
+		removeDockFocus(appName);
+	}
+
+	function toggleMaximize(windowEl) {
+		windowEl.classList.toggle('maximized');
+	}
+
+	function minimizeWindow(windowEl) {
+		windowEl.classList.add('minimized');
+	}
+
 	function updateDockFocus(activeIcon, activeWindow) {
-		// dockIcons.forEach(icon => icon.classList.remove('focused'));
+		dockIcons.forEach(icon => icon.classList.remove('active'));
 		activeIcon.classList.add('active');
 		windows.forEach(win => win.classList.remove('active'));
 		activeWindow.classList.add('active');
 	}
-	
+
 	function removeDockFocus(appName) {
 		const appIcon = document.querySelector(`.dock-icon[data-app="${appName}"]`);
 		if (appIcon) appIcon.classList.remove('active');
 	}
 });
 
+// === ANIMATION DOCK (REBOND) ===
 document.querySelectorAll('.dock-icon').forEach(icon => {
 	icon.addEventListener('click', () => {
-		// Ajoute la classe 'bouncing' pour démarrer l'animation
 		icon.classList.add('bouncing');
-
-		// Supprime la classe après l'animation pour pouvoir la rejouer
-		setTimeout(() => {
-			icon.classList.remove('bouncing');
-		}, 600); // Durée de l'animation (0.6s)
+		setTimeout(() => icon.classList.remove('bouncing'), 600);
 	});
 });
 
-function updateClock() {
-	const clockElement = document.getElementById('clock');
-	const now = new Date();
-	const optionsDate = { weekday: 'short', day: '2-digit', month: 'short' };
-	const optionsTime = { hour: '2-digit', minute: '2-digit' };
+// === DRAGGABLE WINDOWS ===
+function makeDraggable(elmnt) {
+	const header = elmnt.querySelector('.window-header');
+	let offsetX = 0, offsetY = 0;
 
-	const date = now.toLocaleDateString('fr-FR', optionsDate);
-	const time = now.toLocaleTimeString('fr-FR', optionsTime);
+	header.onmousedown = (e) => {
+		e.preventDefault();
+		offsetX = e.clientX - elmnt.offsetLeft;
+		offsetY = e.clientY - elmnt.offsetTop;
 
-	clockElement.textContent = `${date} ${time}`;
+		document.onmousemove = (e) => {
+			if (!elmnt.classList.contains('maximized')) {
+				elmnt.style.left = `${e.clientX - offsetX}px`;
+				elmnt.style.top = `${e.clientY - offsetY}px`;
+			}
+		};
+
+		document.onmouseup = () => document.onmousemove = null;
+	};
 }
-
-setInterval(updateClock, 1000);
-updateClock();
