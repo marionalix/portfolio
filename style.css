@@ -39,7 +39,7 @@ body, html {
 
 #dock {
 	position: fixed;
-	bottom: 20px;
+	bottom: 4px;
 	left: 50%;
 	transform: translateX(-50%);
 	display: flex;
@@ -111,10 +111,7 @@ body, html {
 	border-radius: 10px;
 	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 	overflow: hidden;
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: stretch;
+	display: block;
 	z-index: 100;
 }
 
@@ -122,9 +119,10 @@ body, html {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 10px;
-	background: rgba(0, 0, 0, 0.1);
+	padding: 8px 12px;
+	background: rgba(230, 230, 230, 0.9);
 	font-weight: bold;
+	border-bottom: 1px solid #d0d0d0;
 }
 
 .window-content {
@@ -149,6 +147,52 @@ body, html {
 	color: white;
 	font-weight: bold;
 	cursor: pointer;
+}
+
+.window-controls {
+	display: flex;
+	gap: 8px;
+}
+
+.window-controls button {
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	border: none;
+	cursor: pointer;
+}
+
+.window-controls .close { background-color: #ff5f57; }
+.window-controls .minimize { background-color: #ffbd2e; }
+.window-controls .maximize { background-color: #28c840; }
+
+.send-button {
+	background-color: #007aff;
+	border: none;
+	color: white;
+	padding: 5px 15px;
+	border-radius: 5px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+
+.window-content {
+	padding: 20px;
+}
+
+.window-content form input,
+.window-content form textarea {
+	width: 100%;
+	margin-bottom: 15px;
+	padding: 10px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+}
+
+.window-content form textarea {
+	height: 150px;
+	resize: none;
 }
 
 .hidden {

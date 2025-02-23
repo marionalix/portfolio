@@ -17,31 +17,53 @@ document.addEventListener('DOMContentLoaded', () => {
 	const dockIcons = document.querySelectorAll('.dock-icon');
 	const mailWindow = document.getElementById('mail-window');
 	const closeMailBtn = document.getElementById('close-mail');
+	const sendMailBtn = document.getElementById('send-mail');
 	const menuTitle = document.getElementById('menu-title');
+	const contactForm = document.getElementById('contact-form');
 
 	dockIcons.forEach(icon => {
 		icon.addEventListener('click', () => {
-			dockIcons.forEach(i => i.classList.remove('active'));
-			icon.classList.add('active');
 			const app = icon.dataset.app;
-
 			if (app === 'mail') {
+				mailWindow.classList.toggle('visible');
 				mailWindow.classList.remove('hidden');
 				menuTitle.textContent = 'Mail';
+				updateDockFocus(icon, mailWindow);
 			}
 		});
 	});
 
 	closeMailBtn.addEventListener('click', () => {
+		mailWindow.classList.remove('visible');
 		mailWindow.classList.add('hidden');
-		document.querySelector(".dock-icon[data-app='mail']").classList.remove('active');
 		menuTitle.textContent = 'Portfolio';
+		removeDockFocus('mail');
 	});
 
-	document.getElementById('contact-form').addEventListener('submit', (e) => {
-		e.preventDefault();
-		alert('Message envoyé avec succès !');
-		mailWindow.classList.add('hidden');
-		document.querySelector(".dock-icon[data-app='mail']").classList.remove('active');
+	sendMailBtn.addEventListener('click', () => {
+		if (contactForm.checkValidity()) {
+			alert('Message envoyé avec succès !');
+			mailWindow.classList.remove('visible');
+			mailWindow.classList.add('hidden');
+			menuTitle.textContent = 'Portfolio';
+			removeDockFocus('mail');
+			contactForm.reset();
+		} else {
+			alert('Veuillez remplir tous les champs obligatoires.');
+		}
 	});
+
+	function updateDockFocus(icon, windowElement) {
+		const allIndicators = document.querySelectorAll('.dock-icon .indicator');
+		allIndicators.forEach(i => i.classList.remove('active'));
+
+		if (!windowElement.classList.contains('hidden')) {
+			icon.querySelector('.indicator').classList.add('active');
+		}
+	}
+
+	function removeDockFocus(appName) {
+		const icon = document.querySelector(`.dock-icon[data-app='${appName}'] .indicator`);
+		if (icon) icon.classList.remove('active');
+	}
 });
