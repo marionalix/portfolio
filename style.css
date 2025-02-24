@@ -113,10 +113,12 @@ body, html {
   resize: both;
   min-width: 240px;
   min-height: 240px;
+  opacity: 0.9;
 }
 
 .window.active {
   z-index: 100;
+  opacity: 1;
 }
 
 .window-header {
@@ -136,6 +138,10 @@ body, html {
   display: flex;
   flex-direction: column;
   height: calc(100% - 41px);
+}
+
+.window-content#pages-window-content {
+	padding: 0;
 }
 
 .window-content form textarea,
@@ -306,4 +312,33 @@ body, html {
   width: 100%;
   height: 100%;
   border: none;
+}
+
+/* Fenêtre Pages (similaire aux autres mais ajustée pour le PDF) */
+#pages-window iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.zoom-controls {
+	margin-left: auto;
+	display: flex;
+	gap: 8px;
+}
+
+.zoom-controls button {
+	/* padding: 4px 8px; */
+	width: 25px;
+	height: 25px;
+	font-size: 16px;
+	border: none;
+	border-radius: 4px;
+	background:rgba(230, 230, 230, 0.9);
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.zoom-controls button:hover {
+	background-color: #d0d0d0;
 }
