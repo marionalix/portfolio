@@ -1,17 +1,25 @@
 // === CONST & SÉLECTEURS ===
 const dockIcons = document.querySelectorAll('.dock-icon');
 const windows = document.querySelectorAll('.window');
+
 const mailWindow = document.getElementById('mail-window');
-const safariWindow = document.getElementById('safari-window');
 const closeMailBtn = document.getElementById('close-mail');
 const maximizeMailBtn = document.getElementById('maximize-mail');
 const minimizeMailBtn = document.getElementById('minimize-mail');
-const closeSafariBtn = document.getElementById('close-safari');
-const maximizeSafariBtn = document.getElementById('maximize-safari');
-const minimizeSafariBtn = document.getElementById('minimize-safari');
 const sendMailBtn = document.getElementById('send-mail');
 const menuTitle = document.getElementById('menu-title');
 const contactForm = document.getElementById('contact-form');
+
+const safariWindow = document.getElementById('safari-window');
+const closeSafariBtn = document.getElementById('close-safari');
+const maximizeSafariBtn = document.getElementById('maximize-safari');
+const minimizeSafariBtn = document.getElementById('minimize-safari');
+
+const mapsWindow = document.getElementById('maps-window');
+const closeMapsBtn = document.getElementById('close-maps');
+const maximizeMapsBtn = document.getElementById('maximize-maps');
+const minimizeMapsBtn = document.getElementById('minimize-maps');
+
 const pagesWindow = document.getElementById('pages-window');
 const closePagesBtn = document.getElementById('close-pages');
 const maximizePagesBtn = document.getElementById('maximize-pages');
@@ -21,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	
 	makeDraggable(mailWindow);
 	makeDraggable(safariWindow);
+	makeDraggable(mapsWindow);
 	makeDraggable(pagesWindow);
 
 	// === GESTION DU DOCK ===
@@ -29,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			const app = icon.dataset.app;
 			if (app === 'mail') openWindow(mailWindow, 'Mail', icon);
 			else if (app === 'safari') openWindow(safariWindow, 'Safari', icon);
+			else if (app === 'maps') openWindow(mapsWindow, 'Maps', icon);
 			else if (app === 'pages') openWindow(pagesWindow, 'Pages', icon);
 		});
 	});
@@ -36,14 +46,17 @@ document.addEventListener('DOMContentLoaded', () => {
 	// === GESTION FENÊTRES (FERMER | MAXIMISER | MINIMISER) ===
 	closeMailBtn.addEventListener('click', () => closeWindow(mailWindow, 'mail', true));
 	closeSafariBtn.addEventListener('click', () => closeWindow(safariWindow, 'safari', true));
+	closeMapsBtn.addEventListener('click', () => closeWindow(mapsWindow, 'maps', true));
 	closePagesBtn.addEventListener('click', () => closeWindow(pagesWindow, 'pages', true));
 
 	maximizeMailBtn.addEventListener('click', () => toggleMaximize(mailWindow));
 	maximizeSafariBtn.addEventListener('click', () => toggleMaximize(safariWindow));
+	maximizeMapsBtn.addEventListener('click', () => toggleMaximize(mapsWindow));
 	maximizePagesBtn.addEventListener('click', () => toggleMaximize(pagesWindow));
 
 	minimizeMailBtn.addEventListener('click', () => minimizeWindow(mailWindow));
 	minimizeSafariBtn.addEventListener('click', () => minimizeWindow(safariWindow));
+	minimizeMapsBtn.addEventListener('click', () => minimizeWindow(mapsWindow));
 	minimizePagesBtn.addEventListener('click', () => minimizeWindow(pagesWindow));
 
 	// === GESTION FORMULAIRE MAIL ===
@@ -132,24 +145,22 @@ function makeDraggable(elmnt) {
 	};
 }
 
-// 🔥 Donne le focus à la fenêtre cliquée + MAJ du menu & dock
+// Donne le focus à la fenêtre cliquée + MAJ du menu & dock
 document.querySelectorAll('.window').forEach(windowEl => {
 	windowEl.addEventListener('mousedown', function() {
 		// Retire le focus des autres fenêtres
 		windows.forEach(w => w.classList.remove('active'));
 		this.classList.add('active');
 
-		// 🔄 MAJ du titre dans la barre de menu
+		// MAJ du titre dans la barre de menu
 		if (this.id === 'mail-window') menuTitle.textContent = 'Mail';
 		else if (this.id === 'safari-window') menuTitle.textContent = 'Safari';
 		else if (this.id === 'pages-window') menuTitle.textContent = 'Pages';
 
-		// 🌟 MAJ de l'icône active dans le dock
+		// MAJ de l'icône active dans le dock
 		dockIcons.forEach(icon => icon.classList.remove('active'));
 		const appName = this.id.split('-')[0]; // Ex : 'mail' de 'mail-window'
 		const activeIcon = document.querySelector(`.dock-icon[data-app="${appName}"]`);
 		if (activeIcon) activeIcon.classList.add('active');
 	});
 });
-
-

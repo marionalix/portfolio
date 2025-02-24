@@ -3,14 +3,14 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs
 const url = 'assets/cv.pdf';
 const canvas = document.getElementById('pdf-render');
 const ctx = canvas.getContext('2d');
-let pdfDoc = null, pageNum = 1, scale = 1, minScale = 0.5, maxScale = 2;
+let pdfDoc = null, pageNum = 1, scale = 1.5, minScale = 0.5, maxScale = 2;
 
 pdfjsLib.getDocument(url).promise.then((pdfDoc_) => {
 	pdfDoc = pdfDoc_;
 	renderPage(pageNum);
 });
 
-// 🎯 Fonction pour afficher la page
+// Fonction pour afficher la page
 function renderPage(num) {
 	pdfDoc.getPage(num).then((page) => {
 		const viewport = page.getViewport({ scale });

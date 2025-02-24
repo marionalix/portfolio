@@ -89,6 +89,23 @@
 		  </div>
 		</div>
 		
+		<!-- Fenêtre Maps -->
+		<div class="window hidden" id="maps-window">
+		  <div class="window-header">
+			<div class="window-controls">
+			  <button id="close-maps" class="close"></button>
+			  <button id="minimize-maps" class="minimize"></button>
+			  <button id="maximize-maps" class="maximize"></button>
+			</div>
+		  </div>
+		  <div class="window-content">
+			<iframe
+			  src="https://www.google.com/maps?q=-20.348404,57.552152&z=15&output=embed"
+			  allowfullscreen
+			></iframe>
+		  </div>
+		</div>
+		
 		<!-- Dock -->
 		<div id="dock">
 			<div id="mail-icon" class="dock-icon" data-app="mail">
@@ -101,14 +118,14 @@
 				<span>Safari</span>
 				<div class="indicator"></div>
 			</div>
+			<div class="dock-icon" data-app="maps">
+				<img src="img/maps.png" alt="Maps">
+				<span>Maps</span>
+				<div class="indicator"></div>
+			</div>
 			<div class="dock-icon" data-app="pages">
 				<img src="img/pages.png" alt="Pages">
 				<span>Pages</span>
-				<div class="indicator"></div>
-			</div>
-			<div class="dock-icon" data-app="projects">
-				<img src="img/projects.png" alt="Projets">
-				<span>Projets</span>
 				<div class="indicator"></div>
 			</div>
 		</div>
