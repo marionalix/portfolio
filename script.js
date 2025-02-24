@@ -164,3 +164,7 @@ document.querySelectorAll('.window').forEach(windowEl => {
 		if (activeIcon) activeIcon.classList.add('active');
 	});
 });
+
+document.getElementById("linkedin-icon").addEventListener("click", function() {
+  window.open("https://www.linkedin.com/in/alix-marion-41b3a9157/", "_blank");
+});
