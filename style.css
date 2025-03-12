@@ -25,6 +25,11 @@ body, html {
   color: white;
   font-size: 0.9rem;
   z-index: 100;
+  user-select: none; /* Empêche la sélection de texte */
+  -webkit-user-select: none; /* Pour Safari */
+  -moz-user-select: none; /* Pour Firefox */
+  -ms-user-select: none; /* Pour Internet Explorer/Edge */
+  cursor: default; /* Garde le pointeur normal */
 }
 
 #desktop {
