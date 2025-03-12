@@ -107,6 +107,32 @@
 		  </div>
 		</div>
 		
+		<!-- Fenêtre Notes (Mentions légales) -->
+		<div class="window hidden" id="notes-window">
+		  <div class="window-header">
+			<div class="window-controls">
+			  <button id="close-notes" class="close"></button>
+			  <button id="minimize-notes" class="minimize"></button>
+			  <button id="maximize-notes" class="maximize"></button>
+			</div>
+		  </div>
+		  <div id="notes-content">
+			<div class="notes-sidebar">
+				<h3>Mes Notes</h3>
+				<ul class="notes-list">
+					<li id="note-legal">Mentions Légales</li>
+				</ul>
+			</div>
+			<div class="window-content notes-content">
+				<h2>Mentions Légales</h2>
+				<p><strong>Éditeur du site: </strong>Alix Marion</p>
+				<p><strong>Contact: </strong>marionalix@icloud.com</p>
+				<p><strong>Hébergeur: </strong>L'hébergement de ce site est assuré par la société HOSTINGER INTERNATIONAL LTD, dont le siège social se situe 61 Lordou Vironos Street, 6023 Larnaca, Chypre, joignable par le moyen suivant : https://www.hostinger.fr/contact.</p><br />
+				<p>Ce site est un portfolio personnel et ne collecte aucune donnée utilisateur.</p>
+			</div>
+		  </div>
+		</div>
+		
 		<!-- Dock -->
 		<div id="dock">
 			<div id="mail-icon" class="dock-icon" data-app="mail">
@@ -123,6 +149,11 @@
 				<img src="img/maps.png" alt="Maps">
 				<span>Maps</span>
 				<div class="indicator"></div>
+			</div>
+			<div class="dock-icon" data-app="notes">
+			  <img src="img/notes.png" alt="Notes">
+			  <span>Notes</span>
+			  <div class="indicator"></div>
 			</div>
 			<div class="dock-icon" data-app="linkedin">
 				<img id="linkedin-icon" src="img/linkedin.png" alt="LinkedIn">

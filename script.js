@@ -25,12 +25,18 @@ const closePagesBtn = document.getElementById('close-pages');
 const maximizePagesBtn = document.getElementById('maximize-pages');
 const minimizePagesBtn = document.getElementById('minimize-pages');
 
+const notesWindow = document.getElementById('notes-window');
+const closeNotesBtn = document.getElementById('close-notes');
+const maximizeNotesBtn = document.getElementById('maximize-notes');
+const minimizeNotesBtn = document.getElementById('minimize-notes');
+
 document.addEventListener('DOMContentLoaded', () => {
 	
 	makeDraggable(mailWindow);
 	makeDraggable(safariWindow);
 	makeDraggable(mapsWindow);
 	makeDraggable(pagesWindow);
+	makeDraggable(notesWindow);
 
 	// === GESTION DU DOCK ===
 	dockIcons.forEach(icon => {
@@ -40,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			else if (app === 'safari') openWindow(safariWindow, 'Safari', icon);
 			else if (app === 'maps') openWindow(mapsWindow, 'Maps', icon);
 			else if (app === 'pages') openWindow(pagesWindow, 'Pages', icon);
+			else if (app === 'notes') openWindow(notesWindow, 'Notes', icon);
 		});
 	});
 
@@ -48,16 +55,19 @@ document.addEventListener('DOMContentLoaded', () => {
 	closeSafariBtn.addEventListener('click', () => closeWindow(safariWindow, 'safari', true));
 	closeMapsBtn.addEventListener('click', () => closeWindow(mapsWindow, 'maps', true));
 	closePagesBtn.addEventListener('click', () => closeWindow(pagesWindow, 'pages', true));
+	closeNotesBtn.addEventListener('click', () => closeWindow(notesWindow, 'notes', true));
 
 	maximizeMailBtn.addEventListener('click', () => toggleMaximize(mailWindow));
 	maximizeSafariBtn.addEventListener('click', () => toggleMaximize(safariWindow));
 	maximizeMapsBtn.addEventListener('click', () => toggleMaximize(mapsWindow));
 	maximizePagesBtn.addEventListener('click', () => toggleMaximize(pagesWindow));
+	maximizeNotesBtn.addEventListener('click', () => toggleMaximize(notesWindow));
 
 	minimizeMailBtn.addEventListener('click', () => minimizeWindow(mailWindow));
 	minimizeSafariBtn.addEventListener('click', () => minimizeWindow(safariWindow));
 	minimizeMapsBtn.addEventListener('click', () => minimizeWindow(mapsWindow));
 	minimizePagesBtn.addEventListener('click', () => minimizeWindow(pagesWindow));
+	minimizeNotesBtn.addEventListener('click', () => minimizeWindow(notesWindow));
 
 	// === GESTION FORMULAIRE MAIL ===
 	sendMailBtn.addEventListener('click', () => {

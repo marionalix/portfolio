@@ -116,7 +116,7 @@ body, html {
   display: block;
   transition: box-shadow 0.2s ease-in-out;
   resize: both;
-  min-width: 240px;
+  min-width: 400px;
   min-height: 240px;
   opacity: 0.9;
 }
@@ -364,4 +364,86 @@ div#pdf-container {
 #pdf-footer {
 	height: 10px;
 	background-color: #4b4b4b;
+}
+
+/* === Fenêtre Notes === */
+.notes-window {
+  display: flex;
+  flex-direction: row;
+  width: 600px;
+  height: 400px;
+  min-width: 300px;
+  min-height: 250px;
+  background: #fdfdfd;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  resize: both;
+}
+
+/* === Menu latéral === */
+.notes-sidebar {
+  width: 180px;
+  background: #f8f8f8;
+  border-right: 1px solid #ddd;
+  padding: 15px;
+  flex-shrink: 0;
+  transition: width 0.3s ease;
+}
+
+/* Titre du menu latéral */
+.notes-sidebar h3 {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+  user-select: none;  /* Empêche la sélection du texte */
+  cursor: default;  /* Empêche le curseur de changer */
+}
+
+/* Liste des notes */
+.notes-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Élément d'une note */
+.notes-list li {
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.2s;
+  user-select: none;  /* Empêche la sélection du texte */
+}
+
+.notes-list li:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* === Contenu de la note === */
+.notes-content {
+  flex: 1;
+  padding: 20px;
+  font-family: 'SF Pro Text', Helvetica, Arial, sans-serif;
+  color: #333;
+  line-height: 1.6;
+  overflow-y: auto;
+}
+
+/* Titre de la note */
+.notes-content h2 {
+  font-size: 18px;
+  font-weight: bold;
+  border-bottom: 2px solid #f1c40f;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+/* Conteneur principal du contenu */
+#notes-content {
+  display: flex;
+  height: calc(100% - 10px);
+  background-color: white;
 }
