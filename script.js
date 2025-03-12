@@ -168,3 +168,31 @@ document.querySelectorAll('.window').forEach(windowEl => {
 document.getElementById("linkedin-icon").addEventListener("click", function() {
   window.open("https://www.linkedin.com/in/alix-marion-41b3a9157/", "_blank");
 });
+
+document.getElementById("send-mail").addEventListener("click", async function () {
+	const form = document.getElementById("contact-form");
+	const formData = new FormData(form);
+
+	if (!form.checkValidity()) {
+		alert("⚠️ Veuillez remplir tous les champs requis.");
+		return;
+	}
+
+	try {
+		const response = await fetch(form.action, {
+			method: form.method,
+			body: formData,
+			headers: { 'Accept': 'application/json' }
+		});
+
+		if (response.ok) {
+			alert("✅ Votre message a été envoyé avec succès !");
+			form.reset();
+		} else {
+			alert("⚠️ Une erreur s'est produite, veuillez réessayer.");
+		}
+	} catch (error) {
+		alert("❌ Erreur de connexion, veuillez vérifier votre connexion internet.");
+	}
+});
+

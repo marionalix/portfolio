@@ -32,21 +32,21 @@
 				<button id="send-mail" class="send-button">Envoyer</button>
 			</div>
 			<div id="mail-content" class="window-content">
-				<form id="contact-form">
+				<form id="contact-form" action="https://formspree.io/f/xblgjpgl" method="POST">
 					<div class="form-row">
 						<span>À :</span>
-						<input type="email" id="to" name="to" value="marionalix@icloud.com" readonly>
+						<input type="email" name="to" value="marionalix@icloud.com" readonly>
 					</div>
 					<div class="form-row">
 						<span>De :</span>
-						<input type="email" id="from" name="from" placeholder="Votre adresse e-mail" required>
+						<input type="email" name="email" placeholder="Votre adresse e-mail" required>
 					</div>
 					<div class="form-row">
 						<span>Objet :</span>
-						<input type="text" id="subject" name="subject" placeholder="Sujet..." required>
+						<input type="text" name="subject" placeholder="Sujet..." required>
 					</div>
 					<div class="form-row message-row">
-						<textarea id="message" name="message" placeholder="Écrivez votre message ici..." required></textarea>
+						<textarea name="message" placeholder="Écrivez votre message ici..." required></textarea>
 					</div>
 				</form>
 			</div>
