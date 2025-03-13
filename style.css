@@ -62,6 +62,8 @@ body, html {
   margin: 0;
   cursor: pointer;
   transition: transform 0.2s;
+  width: 64px;
+  height: 64px;
 }
 
 .dock-icon img {
