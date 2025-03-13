@@ -129,6 +129,7 @@ body, html {
 .window.active {
   z-index: 100;
   opacity: 1;
+  background-color: white;
 }
 
 .window-header {
@@ -427,15 +428,25 @@ div#pdf-container {
   background: rgba(0, 0, 0, 0.05);
 }
 
+#notes-container {
+	display: flex;
+	flex-direction: column;
+}
+
 /* === Contenu de la note === */
 .notes-content {
   flex: 1;
   display: none;
   padding: 20px;
+  padding-bottom: 0px;
   font-family: 'SF Pro Text', Helvetica, Arial, sans-serif;
   color: #333;
   line-height: 1.6;
   overflow-y: auto;
+}
+
+#notes-footer {
+  height: 10px;
 }
 
 /* Titre de la note */
@@ -450,8 +461,7 @@ div#pdf-container {
 /* Conteneur principal du contenu */
 #notes-content {
   display: flex;
-  height: calc(100% - 10px);
-  background-color: white;
+  height: calc(100% - 42px);
 }
 
 .active {
@@ -464,23 +474,24 @@ div#pdf-container {
 }
 
 .notes-content p {
-  margin-bottom: 24px; /* Ajuste l'espacement selon ton besoin */
+  margin-bottom: 24px; 
 }
 
 .github-preview {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	padding: 20px;
-	background: #f5f5f5;
-	height: 100%;
+  width: 100%;
+  max-width: 100%;
+  overflow: auto; /* Active le scroll si nécessaire */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px; /* Augmente l'espace autour */
+  gap: 15px; /* Ajoute de l'espace entre les éléments */
 }
 
 .github-preview img {
-	max-width: 90%;
-	border-radius: 10px;
-	margin-bottom: 15px;
+  max-width: 95%; /* Laisse un peu de marge */
+  height: auto;
+  display: block;
 }
 
 .github-button {

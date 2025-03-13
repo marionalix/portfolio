@@ -219,7 +219,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			noteLinks.forEach(item => item.classList.remove("active"));
 
 			// Active la note sélectionnée et met en surbrillance
-			const targetNote = document.getElementById("note-" + this.dataset.note);
+			const targetNote = document.getElementById("notes-" + this.dataset.note);
 			if (targetNote) {
 				targetNote.classList.add("active");
 				this.classList.add("active");
