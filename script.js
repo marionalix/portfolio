@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			if (app === 'mail') openWindow(mailWindow, 'Mail', icon);
 			else if (app === 'safari') openWindow(safariWindow, 'Safari', icon);
 			else if (app === 'maps') openWindow(mapsWindow, 'Maps', icon);
-			else if (app === 'pages') openWindow(pagesWindow, 'Pages', icon);
+			else if (app === 'pages') openWindow(pagesWindow, 'PDF Viewer', icon);
 			else if (app === 'notes') openWindow(notesWindow, 'Notes', icon);
 		});
 	});
@@ -165,7 +165,9 @@ document.querySelectorAll('.window').forEach(windowEl => {
 		// MAJ du titre dans la barre de menu
 		if (this.id === 'mail-window') menuTitle.textContent = 'Mail';
 		else if (this.id === 'safari-window') menuTitle.textContent = 'Safari';
-		else if (this.id === 'pages-window') menuTitle.textContent = 'Pages';
+		else if (this.id === 'maps-window') menuTitle.textContent = 'Maps';
+		else if (this.id === 'notes-window') menuTitle.textContent = 'Notes';
+		else if (this.id === 'pages-window') menuTitle.textContent = 'PDF Viewer';
 
 		// MAJ de l'icône active dans le dock
 		dockIcons.forEach(icon => icon.classList.remove('active'));
@@ -204,5 +206,25 @@ document.getElementById("send-mail").addEventListener("click", async function ()
 	} catch (error) {
 		alert("❌ Erreur de connexion, veuillez vérifier votre connexion internet.");
 	}
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+	const notes = document.querySelectorAll(".notes-content");
+	const noteLinks = document.querySelectorAll(".notes-list li");
+
+	noteLinks.forEach(link => {
+		link.addEventListener("click", function () {
+			// Supprime la classe active de toutes les notes et liens
+			notes.forEach(note => note.classList.remove("active"));
+			noteLinks.forEach(item => item.classList.remove("active"));
+
+			// Active la note sélectionnée et met en surbrillance
+			const targetNote = document.getElementById("note-" + this.dataset.note);
+			if (targetNote) {
+				targetNote.classList.add("active");
+				this.classList.add("active");
+			}
+		});
+	});
 });
 

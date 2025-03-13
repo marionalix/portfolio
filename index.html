@@ -69,7 +69,7 @@
 			</div>
 		</div>
 		
-		<!-- Fenêtre Pages -->
+		<!-- Fenêtre PDF Viewer	 -->
 		<div class="window hidden" id="pages-window">
 		  <div class="window-header">
 			<div class="window-controls">
@@ -120,10 +120,31 @@
 			<div class="notes-sidebar">
 				<h3>Mes Notes</h3>
 				<ul class="notes-list">
-					<li id="note-legal">Mentions Légales</li>
+					<li data-note="presentation" class="active">A propos</li>
+					<li data-note="mentions">Mentions Légales</li>
 				</ul>
 			</div>
-			<div class="window-content notes-content">
+			<div id="note-presentation" class="notes-content active">
+				<h2>Présentation du Portfolio</h2>
+				<p>Bienvenue sur mon portfolio ! Ce site a été conçu pour offrir une expérience immersive inspirée de l’interface macOS. Vous y trouverez différentes applications simulées, accessibles via le dock, vous permettant d’explorer mon travail et mon parcours.</p>
+				
+				<h2>À propos de moi</h2>
+				<p>Je suis [ton métier/compétence principale], passionné par [tes domaines d’expertise]. À travers ce portfolio, je partage mes expériences, mes projets et mes réalisations dans un environnement interactif et moderne.</p>
+				
+				<h2>Navigation dans le Portfolio</h2>
+				<p>Mail 📩 : Un formulaire de contact pour me joindre facilement.<br>
+				Safari 🌍 : Une fenêtre de navigation simulée.<br>
+				PDF Viewer 📄 : Mon CV en version PDF.<br>
+				Maps 🗺️ : Un aperçu de ma localisation ou des lieux importants.<br>
+				LinkedIn 🔗 : Un accès rapide à mon profil professionnel.<br>
+				Notes 📝 : Cet espace où je partage des informations essentielles, comme cette présentation et les mentions légales.</p>
+				
+				<h2>Pourquoi ce Portfolio ?</h2>
+				<p>L’idée derrière ce projet est de proposer une alternative originale et dynamique aux portfolios traditionnels. En reprenant les codes visuels et interactifs de macOS, j’ai voulu créer une interface qui reflète à la fois mon approche du design et mon expertise technique.</p>
+				
+				<p>N’hésitez pas à explorer les différentes sections et à me contacter via l’application Mail si vous souhaitez en savoir plus sur mon travail ou collaborer avec moi ! 🚀</p>
+			</div>
+			<div id="note-mentions" class="notes-content hidden">
 				<h2>Mentions Légales</h2>
 				<p><strong>Éditeur du site: </strong>Alix Marion</p>
 				<p><strong>Contact: </strong>marionalix@icloud.com</p>
@@ -161,8 +182,8 @@
 				<div class="indicator"></div>
 			</div>
 			<div class="dock-icon" data-app="pages">
-				<img src="img/pages.png" alt="Pages">
-				<span>Pages</span>
+				<img src="img/pdf.png" alt="PDF Viewer">
+				<span>Viewer</span>
 				<div class="indicator"></div>
 			</div>
 		</div>

@@ -47,7 +47,7 @@ body, html {
   transform: translateX(-50%);
   display: flex;
   gap: 10px;
-  padding: 10px 10px 3px;
+  padding: 8px;
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
   border-radius: 20px;
@@ -93,7 +93,10 @@ body, html {
   height: 4px;
   border-radius: 50%;
   background-color: white;
-  margin-top: 2px;
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%); /* Centre horizontalement */
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -425,6 +428,7 @@ div#pdf-container {
 /* === Contenu de la note === */
 .notes-content {
   flex: 1;
+  display: none;
   padding: 20px;
   font-family: 'SF Pro Text', Helvetica, Arial, sans-serif;
   color: #333;
@@ -446,4 +450,17 @@ div#pdf-container {
   display: flex;
   height: calc(100% - 10px);
   background-color: white;
+}
+
+.active {
+  display: block; /* Affiche uniquement la note active */
+}
+
+.notes-list li.active {
+  background: rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+}
+
+.notes-content p {
+  margin-bottom: 24px; /* Ajuste l'espacement selon ton besoin */
 }
